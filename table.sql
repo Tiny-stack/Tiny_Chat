@@ -1,0 +1,76 @@
+use sol_tech;
+CREATE TABLE user_details
+(
+	user_ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_name CHAR(50) NOT NULL,
+	user_pass CHAR(255) NOT NULL,
+	email CHAR(100) NOT NULL
+);
+
+CREATE TABLE user_useless
+(
+	user_ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ 	city_name CHAR(50) NOT NULL,
+ 	date_created INT NOT NULL,
+
+ 	FOREIGN KEY (user_ID) REFERENCES user_details(user_ID)
+);
+
+
+
+CREATE TABLE user_data
+(
+	user_ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	class INT UNSIGNED NOT NULL,
+ 	school_name CHAR(100) NOT NULL
+);
+
+CREATE TABLE notifications
+(
+	noti_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_ID INT UNSIGNED NOT NULL,
+	noti_text VARCHAR(250) NOT NULL,
+	date INT(11),
+	FOREIGN KEY (user_ID) REFERENCES user_details(user_ID)
+);
+CREATE TABLE posts
+(
+	post_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_id INT NOT NULL,
+	image_loc VARCHAR(100),
+	post_text TEXT,
+	date INT(11)
+);
+
+CREATE TABLE user_pic
+(
+	image_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL,
+	image_loc VARCHAR(100),
+	date INT(11)
+);
+CREATE TABLE banner_pic
+(
+	image_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNSIGNED NOT NULL,
+	image_loc VARCHAR(100),
+	date INT(11)
+);
+
+CREATE TABLE chats
+(
+	chat_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	msg text,
+	sender INT UNSIGNED NOT NULL,
+	reci INT UNSIGNED NOT NULL,
+	date INT(11)
+);
+CREATE TABLE comments
+(
+	comment_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	post_id INT UNSIGNED NOT NULL,
+	comment text,
+	link VARCHAR(250),
+	user_id INT UNSIGNED NOT NULL,
+	likes INT UNSIGNED
+);
